@@ -12,8 +12,7 @@ int wav::getLength() {
 
 
 // array operator overloading
-int& wav::operator[](int index)
-{
+int& wav::operator[](int index) {
 	return data[index];
 }
 

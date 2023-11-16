@@ -11,7 +11,7 @@ public:
 	// getters
 	int getLength();
 
-	// operator overload
+	// operator overloads
 	int& operator[](int index);
 
 	// length must be specified at time of construction
