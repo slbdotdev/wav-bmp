@@ -8,24 +8,25 @@
 
 class wav {
 public:
-	// getters
-	int getLength();
+    // getters
+    int getLength();
 
-	// operator overloads
-	int& operator[](int index);
+    // operator overloads
+    int& operator[](int index);
 
-	// length must be specified at time of construction
-	wav(int sampleCount)
-		: length(sampleCount), data(new int[sampleCount]) {};
+    // length must be specified at time of construction
+    wav(int sampleCount)
+        : length(sampleCount), data(new int[sampleCount]) {};
 
-	// copy constructor
-	wav(const wav& copy);
+    // copy constructor
+    wav(const wav& copy);
 
-	// destructor for deleting dynamic memory
-	~wav();
+    // destructor for deleting dynamic memory
+    ~wav();
+
 private:
-	int* data;
-	int length;
+    int* data;
+    int length;
 };
 
 #endif
