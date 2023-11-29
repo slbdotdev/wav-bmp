@@ -1,11 +1,12 @@
+// CSC1061C01 Capstone Project
 // wav.h
-// Class for reading and storing .wav file data
 // 2023-11-03
 // Stephen Lee Belden
 
 #ifndef wav_h
 #define wav_h
 
+// Class for reading and storing.wav file data
 class wav {
 public:
     // getters

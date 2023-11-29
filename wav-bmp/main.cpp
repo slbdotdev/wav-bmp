@@ -1,5 +1,5 @@
-// CSC1061C01
-// Capstone Project: Draft
+// CSC1061C01 Capstone Project
+// main.cpp
 // 2023-11-03
 // Stephen Lee Belden
 

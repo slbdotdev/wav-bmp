@@ -1,9 +1,11 @@
+// CSC1061C01 Capstone Project
 // wav.cpp
-// Definitions for class wav
 // 2023-11-03
 // Stephen Lee Belden
 
 #include "wav.h"
+
+// Definitions for class wav
 
 // getters
 int wav::getLength() {
