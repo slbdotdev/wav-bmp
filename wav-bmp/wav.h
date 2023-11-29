@@ -6,7 +6,7 @@
 #ifndef wav_h
 #define wav_h
 
-// Class for reading and storing.wav file data
+// Class for reading and storing .wav audio file data
 class wav {
 public:
     // getters
@@ -14,6 +14,11 @@ public:
 
     // operator overloads
     int& operator[](int index);
+
+    // Assignment is typically overloaded for classes with pointers,
+    // but in this case the class is designed to be immutable,
+    // so modifying an object after construction is not permitted.
+    const wav& operator=(const wav&) = delete;
 
     // length must be specified at time of construction
     wav(int sampleCount)
