@@ -6,23 +6,28 @@
 #ifndef wav_h
 #define wav_h
 
+#include <fstream>
+
 // Class for reading and storing .wav audio file data
 class wav {
 public:
+    // primary constructor, the only way to load data.
+    // all wav objects are immutable after construction.
+    wav(std::ifstream& infile);
+
+    // length-only constructor, for testing. all samples are set to 0.
+    wav(int sampleCount);
+
     // getters
     int getLength();
 
     // operator overloads
-    int& operator[](int index);
+    int16_t& operator[](int index);
 
-    // Assignment is typically overloaded for classes with pointers,
+    // assignment is typically overloaded for classes with pointers,
     // but in this case the class is designed to be immutable,
     // so modifying an object after construction is not permitted.
     const wav& operator=(const wav&) = delete;
-
-    // length must be specified at time of construction
-    wav(int sampleCount)
-        : length(sampleCount), data(new int[sampleCount]) {};
 
     // copy constructor
     wav(const wav& copy);
@@ -31,7 +36,7 @@ public:
     ~wav();
 
 private:
-    int* data;
+    int16_t* data;
     int length;
 };
 
