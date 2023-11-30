@@ -1,5 +1,5 @@
+// CSC1061C01 Capstone Project
 // tests.h
-// Functions for testing code during development
 // 2023-11-03
 // Stephen Lee Belden
 
@@ -8,12 +8,14 @@
 
 #include "wav.h"
 
+// Functions for testing code during development
 namespace tests {
-	// check everything
-	void runAll();
+    // check everything
+    void runAll();
 
-	// individual tests
-	void wavConstructorCopiesDeep();
+    // individual tests
+    void wavConstructorCopiesDeep();
+    void wavArrayOpBounds();
 }
 
 #endif

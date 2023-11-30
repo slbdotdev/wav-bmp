@@ -43,11 +43,13 @@ const int wav::getLength() {
 
 // array operator overloading
 const int16_t& wav::operator[](int index) {
-    return data[index];
+    if(0 <= index && index < length)
+        return data[index];
+    throw std::out_of_range("wav sample index out of bounds");
 }
 
 const int16_t& wav::operator[](int index) const {
-    return data[index];
+    return operator[](index);
 }
 
 

@@ -6,7 +6,9 @@
 #ifndef wav_h
 #define wav_h
 
+#include <cassert>
 #include <fstream>
+#include <stdexcept>
 
 // Immutable class for reading and storing .wav audio file data
 class wav {
