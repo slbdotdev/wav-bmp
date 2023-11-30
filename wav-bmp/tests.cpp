@@ -18,11 +18,8 @@ void tests::wavConstructorCopiesDeep() {
 	wav a(samples);
 	wav b(a);
 
-	// modify only one
-	a[0] = 2121;
-
-	// test
-	assert(b[0] != 2121);
+	// test for address difference
+	assert(&a[0] != &b[0]);
 
 	// wav destructor deletes data when objects go out of scope
 }

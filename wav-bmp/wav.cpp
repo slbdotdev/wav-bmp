@@ -5,13 +5,13 @@
 
 #include "wav.h"
 
-// Definitions for class wav
-
-// constructor for loading data from a file
+// primary data-loading constructor definition
 wav::wav(std::ifstream& infile) {
     // TODO
 }
 
+
+// length-only constructor definition
 wav::wav(int sampleCount) {
     // set member variables
     length = sampleCount;
@@ -21,22 +21,10 @@ wav::wav(int sampleCount) {
     for (int i = 0; i < sampleCount; i++) {
         data[i] = static_cast<int16_t>(0);
     }
-
-}
-
-// getters
-int wav::getLength() {
-    return length;
 }
 
 
-// array operator overloading
-int16_t& wav::operator[](int index) {
-    return data[index];
-}
-
-
-// copy constructor for deep copy
+// deep copy constructor definition
 wav::wav(const wav& copy) {
     length = copy.length;
     data = new int16_t[length];
@@ -44,6 +32,22 @@ wav::wav(const wav& copy) {
     for (int i = 0; i < length; i++) {
         data[i] = copy.data[i];
     }
+}
+
+
+// getter
+const int wav::getLength() {
+    return length;
+}
+
+
+// array operator overloading
+const int16_t& wav::operator[](int index) {
+    return data[index];
+}
+
+const int16_t& wav::operator[](int index) const {
+    return data[index];
 }
 
 

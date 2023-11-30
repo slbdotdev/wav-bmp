@@ -8,7 +8,7 @@
 
 #include <fstream>
 
-// Class for reading and storing .wav audio file data
+// Immutable class for reading and storing .wav audio file data
 class wav {
 public:
     // primary constructor, the only way to load data.
@@ -18,19 +18,20 @@ public:
     // length-only constructor, for testing. all samples are set to 0.
     wav(int sampleCount);
 
+    // copy constructor for deep copy of data referenced by pointer
+    wav(const wav& copy);
+
     // getters
-    int getLength();
+    const int getLength();
 
     // operator overloads
-    int16_t& operator[](int index);
+    const int16_t& operator[](int index);
+    const int16_t& operator[](int index) const;
 
     // assignment is typically overloaded for classes with pointers,
     // but in this case the class is designed to be immutable,
     // so modifying an object after construction is not permitted.
     const wav& operator=(const wav&) = delete;
-
-    // copy constructor
-    wav(const wav& copy);
 
     // destructor for deleting dynamic memory
     ~wav();
