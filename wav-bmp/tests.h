@@ -1,6 +1,6 @@
 // CSC1061C01 Capstone Project
 // tests.h
-// 2023-11-03
+// 2023-11-29
 // Stephen Lee Belden
 
 #ifndef tests_h
@@ -15,7 +15,9 @@ namespace tests {
 
     // individual tests
     void wavConstructorCopiesDeep();
+    void bmpConstructorCopiesDeep();
     void wavArrayOpBounds();
+    void bmpArrayOpBounds();
 }
 
 #endif

@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bmp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pixel.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="wav.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bmp.h" />
+    <ClInclude Include="pixel.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="wav.h" />
   </ItemGroup>

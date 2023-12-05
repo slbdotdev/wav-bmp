@@ -1,6 +1,6 @@
 // CSC1061C01 Capstone Project
 // wav.h
-// 2023-11-03
+// 2023-11-29
 // Stephen Lee Belden
 
 #ifndef wav_h
@@ -13,7 +13,7 @@
 // Immutable class for reading and storing .wav audio file data
 class wav {
 public:
-    // primary constructor, the only way to load data.
+    // primary conversion constructor, the only way to load data.
     // all wav objects are immutable after construction.
     wav(std::ifstream& infile);
 

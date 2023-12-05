@@ -1,11 +1,11 @@
 // CSC1061C01 Capstone Project
 // wav.cpp
-// 2023-11-03
+// 2023-11-29
 // Stephen Lee Belden
 
 #include "wav.h"
 
-// primary data-loading constructor definition
+// primary data-loading conversion constructor definition
 wav::wav(std::ifstream& infile) {
     // TODO
 }
@@ -49,7 +49,9 @@ const int16_t& wav::operator[](int index) {
 }
 
 const int16_t& wav::operator[](int index) const {
-    return operator[](index);
+    if (0 <= index && index < length)
+        return data[index];
+    throw std::out_of_range("wav sample index out of bounds");
 }
 
 
