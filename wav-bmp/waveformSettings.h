@@ -17,7 +17,7 @@ public:
     waveformSettings()
         : inputFilepath("meow.wav"),
         outputFilepath("defaultOutput.bmp"),
-        outputWidth(400),
+        outputWidth(333),
         outputHeight(80),
         backgroundColor(pixel(10, 10, 175)), // light blue
         foregroundColor(pixel(10, 10, 75)) {} // dark blue

@@ -61,10 +61,7 @@ bmp::~bmp() {
 // Write a header with proper information according to .BMP file type.
 void bmp::writeHeader(std::ofstream& bmpFile) const {
     // Bitmap signature bytes
-    const char B = 'B';
-    const char M = 'M';
-    bmpFile.write((char*)&B, sizeof(uint8_t));
-    bmpFile.write((char*)&M, sizeof(uint8_t));
+    bmpFile << 'B' << 'M';
 
     // Bitmap file size in bytes
     const uint32_t bytesInHeader = 54;
@@ -131,20 +128,17 @@ void bmp::writeRow(int rowIndex, std::ofstream& bmpFile) const {
         // pointer arithmetic
         pixel* currentPixel = rowBaseAddress + column;
 
-        unsigned char red = currentPixel->r();
-        unsigned char blu = currentPixel->g();
-        unsigned char gre = currentPixel->b();
-        bmpFile.write((char*)&red, sizeof(unsigned char));
-        bmpFile.write((char*)&gre, sizeof(unsigned char));
-        bmpFile.write((char*)&blu, sizeof(unsigned char));
+        // write colors in .BMP order
+        bmpFile << currentPixel->b()
+                << currentPixel->g()
+                << currentPixel->r();
         rowBytes += 3;
     }
 
     // The length of each row of a valid BMP file must be a multiple of 4
     // bytes. Add null chars (bytes) to reach that multiple.
     while (rowBytes % 4 > 0) {
-        unsigned char blank = 0u;
-        bmpFile.write((char*)&blank, sizeof(unsigned char));
+        bmpFile << (unsigned char)0u;
         rowBytes++;
     }
 }
