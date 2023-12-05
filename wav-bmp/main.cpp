@@ -3,8 +3,10 @@
 // 2023-11-03
 // Stephen Lee Belden
 
-#include "wav.h"
+#include "bmp.h"
 #include "tests.h"
+#include "wav.h"
+#include "waveformSettings.h"
 
 #include <iostream>
 
@@ -14,7 +16,19 @@ int main() {
     // code testing
     tests::runAll();
 
-    // program
+    // get settings
+    waveformSettings sets;
+
+    // read wav audio
     wav sound(1000);
     cout << "sound has " << sound.getLength() << " samples." << endl;
+
+    // generate bmp image
+    bmp image(sets.outputWidth, sets.outputHeight);
+
+    // open output file
+    ofstream outFile(sets.outputFilepath);
+
+    // write to disk
+    image.writeToFile(outFile);
 }

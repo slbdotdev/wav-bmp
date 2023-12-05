@@ -6,6 +6,7 @@
 #ifndef bmp_h
 #define bmp_h
 
+#include <fstream>
 #include <stdexcept>
 
 #include "pixel.h"
@@ -23,9 +24,12 @@ public:
     // Getters
     const unsigned int getPixelCount();
 
+    // Write this bmp image to the specified output file
+    void writeToFile(std::ofstream&) const;
+
     // operator overloads
-    const pixel& operator[](int index);
-    const pixel& operator[](int index) const;
+    const pixel& operator[](unsigned int index);
+    const pixel& operator[](unsigned int index) const;
 
     // Assignment is typically overloaded for classes with pointers,
     // but in this case the class contains constant member values,
@@ -36,6 +40,15 @@ public:
     ~bmp();
 
 private:
+    // Private helper functions
+    void writeHeader(std::ofstream& bmpFile) const;
+    void writeRow(int rowIndex, std::ofstream& bmpFile) const;
+    
+    // It is important for the width and height of the image to be
+    // constant, because these values are used to initialize the size
+    // of the data array, to determine row boundaries, and for bounds
+    // checking. The width and height must never go out-of-sync with
+    // the data allocated for this object.
     const unsigned int width;  // non-negative column count
     const unsigned int height; // non-negative row count
     pixel* data;               // contiguous set of pixels
