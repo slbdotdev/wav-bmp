@@ -9,6 +9,7 @@
 #include <fstream>
 #include <stdexcept>
 
+#include "bmpHeader.h"
 #include "pixel.h"
 
 // Class for storing and writing a .bmp image file
@@ -16,7 +17,9 @@ class bmp {
 public:
     // Constructor with size only, for testing, all pixels black
     bmp(unsigned int w, unsigned int h)
-        : width(w), height(h), data(new pixel[w * h]) {};
+        : width(w), height(h),
+        data(new pixel[w * h]),
+        head(bmpHeader(w, h)) {};
 
     // Copy constructor for deep copy of data referenced by pointer
     bmp(const bmp& copy);
@@ -25,7 +28,7 @@ public:
     const unsigned int getPixelCount();
 
     // Write this bmp image to the specified output file
-    void writeToFile(std::ofstream&) const;
+    void writeToFile(std::ofstream&);
 
     // operator overloads
     const pixel& operator[](unsigned int index);
@@ -41,16 +44,15 @@ public:
 
 private:
     // Private helper functions
-    void writeHeader(std::ofstream& bmpFile) const;
     void writeRow(int rowIndex, std::ofstream& bmpFile) const;
     
     // It is important for the width and height of the image to be
     // constant, because these values are used to initialize the size
-    // of the data array, to determine row boundaries, and for bounds
-    // checking. The width and height must never go out-of-sync with
-    // the data allocated for this object.
+    // of the data array, to determine row boundaries, for array bounds
+    // checking, and in the header.
     const unsigned int width;  // non-negative column count
     const unsigned int height; // non-negative row count
+    const bmpHeader head;      // .BMP file format header
     pixel* data;               // contiguous set of pixels
 };
 
