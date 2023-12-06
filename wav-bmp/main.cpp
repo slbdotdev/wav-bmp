@@ -25,11 +25,15 @@ int main() {
 
     // generate bmp image
     bmpWave image(sets.outputWidth, sets.outputHeight);
-    image.paintColumn(1, 1.0, pixel(200, 10, 175));
+    image.fillBackground(sets.backgroundColor);
+    image.paintColumn(0, 0.95, sets.foregroundColor);
 
-    // open output file
+    // open output file as raw binary to avoid carriage return issues
     ofstream outFile(sets.outputFilepath, ios::binary);
 
     // write to disk
     image.writeToFile(outFile);
+
+    // close file
+    outFile.close();
 }

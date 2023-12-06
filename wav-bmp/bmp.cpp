@@ -21,7 +21,7 @@ bmp::bmp(const bmp& copy)
 
 
 // Getter
-const unsigned int bmp::getPixelCount() {
+const int bmp::getPixelCount() {
     return width * height;
 }
 
@@ -32,20 +32,20 @@ void bmp::writeToFile(std::ofstream& outFile) {
     head.write(outFile);
 
     // write data in rows after header
-    for (unsigned int rowIndex = 0; rowIndex < height; rowIndex++) {
+    for (int rowIndex = 0; rowIndex < height; rowIndex++) {
         writeRow(rowIndex, outFile);
     }
 }
 
 
 // array operator overloading
-const pixel& bmp::operator[](unsigned int index) {
+const pixel& bmp::operator[](int index) {
     if (0 <= index && index < width * height)
         return data[index];
     throw std::out_of_range("bmp pixel index out of bounds");
 }
 
-const pixel& bmp::operator[](unsigned int index) const {
+const pixel& bmp::operator[](int index) const {
     if (0 <= index && index < width * height)
         return data[index];
     throw std::out_of_range("bmp pixel index out of bounds");
@@ -70,7 +70,7 @@ void bmp::writeRow(int rowIndex, std::ofstream& bmpFile) const {
     pixel* rowBaseAddress = data + (rowIndex * width);
 
     // write each pixel in this row
-    for (unsigned int column = 0; column < width; column++) {
+    for (int column = 0; column < width; column++) {
         // pointer arithmetic
         pixel* currentPixel = rowBaseAddress + column;
 

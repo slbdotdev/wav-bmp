@@ -5,29 +5,37 @@
 
 #include "bmpWave.h"
 
-void bmpWave::paintColumn(int colIndex, float fillPercent, pixel color) {
-    // Exception checking
-    if (colIndex < 0) {
-        throw std::out_of_range("bmpWave colIndex smaller than zero");
+// Paint everything
+void bmpWave::fillBackground(pixel color) {
+    // set every pixel in image
+    for (int pixelIndex = 0; pixelIndex < (height * width); pixelIndex++) {
+        data[pixelIndex] = color;
     }
-    if (colIndex >= width) {
-        throw std::out_of_range("bmpWave colIndex larger than image width");
-    }
-    if (fillPercent < 0.0) {
-        throw std::out_of_range("bmpWave fillPercent less than zero");
-    }
-    if (fillPercent > 1.0) {
-        throw std::out_of_range("bmpWave fillPercent larger than 100%");
-    }
+}
+
+
+// Paint just one column, centered vertically
+void bmpWave::paintColumn(int colIndex, double fillPercent, pixel color) {
+    // Bounds checking
+    if (colIndex < 0) colIndex = 0;
+    if (colIndex >= width) colIndex = width - 1;
+    if (fillPercent < 0.0) fillPercent = 0.0;
+    if (fillPercent > 1.0) fillPercent = 1.0;
 
     // Fill (or don't fill) each pixel in the column
     for (int rowIndex = 0; rowIndex < height; rowIndex++) {
-        // determine this row's height as a percentage
-        float rowPercent = static_cast<float>(rowIndex + 1) / height;
+        // split fill height above and below middle of image
+        int middle = height / 2;
+        double halfFill = fillPercent / 2;
+        int upperBound
+            = static_cast<int>(ceil(middle + (height * halfFill)));
+        int lowerBound
+            = static_cast<int>(floor(middle - (height * halfFill)));
 
-        // use fill percentage to determine if this pixel gets painted
-        if (rowPercent <= fillPercent) {
-            data[colIndex + (rowIndex * width)] = color;
+        // use bounds to determine if this pixel gets painted
+        if (rowIndex >= lowerBound && rowIndex < upperBound) {
+            int pixelIndex = colIndex + (rowIndex * width);
+            data[pixelIndex] = color;
         }
     }
 }

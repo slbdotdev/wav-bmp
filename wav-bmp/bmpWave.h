@@ -15,10 +15,13 @@
 class bmpWave : public bmp {
 public:
     // Use base class custom constructor
-    bmpWave(unsigned int w, unsigned int h) : bmp(w, h) {};
+    bmpWave(int w, int h) : bmp(w, h) {};
+
+    // Fill entire image with a solid color
+    void fillBackground(pixel color);
 
     // Fill columns with waves
-    void paintColumn(int colIndex, float fillPercent, pixel color);
+    void paintColumn(int colIndex, double fillPercent, pixel color);
 };
 
 #endif

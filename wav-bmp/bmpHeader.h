@@ -13,7 +13,7 @@
 class bmpHeader {
 public:
     // Constructor creates immutable object.
-    bmpHeader(unsigned int w, unsigned int h)
+    bmpHeader(int w, int h)
         : width(w), height(h), totalFileSize(calculateSize(w, h)) {};
 
     // Write the contents of this object to outFile.
@@ -22,8 +22,8 @@ public:
 private:
     // Private helper function.
     // Static for use in constructor initialization.
-    static unsigned int calculateSize(const unsigned int width,
-        const unsigned int height);
+    static unsigned int calculateSize(const int width,
+        const int height);
 
     // Values composing a header, listed in header specification order
     const static unsigned int bytesInHeader = 54;

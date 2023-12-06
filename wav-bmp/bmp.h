@@ -17,7 +17,7 @@ class bmp {
 public:
     // Constructor requires fixed height and width,
     // initializes pixels to black
-    bmp(unsigned int w, unsigned int h)
+    bmp(int w, int h)
         : width(w), height(h),
         data(new pixel[w * h]),
         head(bmpHeader(w, h)) {};
@@ -26,14 +26,14 @@ public:
     bmp(const bmp& copy);
 
     // Getters
-    const unsigned int getPixelCount();
+    const int getPixelCount();
 
     // Write this bmp image to the specified output file
     void writeToFile(std::ofstream&);
 
     // operator overloads
-    const pixel& operator[](unsigned int index);
-    const pixel& operator[](unsigned int index) const;
+    const pixel& operator[](int index);
+    const pixel& operator[](int index) const;
 
     // Assignment is typically overloaded for classes with pointers,
     // but in this case the class contains constant member values,
@@ -48,8 +48,8 @@ protected:
     // constant, because these values are used to initialize the size
     // of the data array, to determine row boundaries, for array bounds
     // checking, and in the header.
-    const unsigned int width;  // non-negative column count
-    const unsigned int height; // non-negative row count
+    const int width;  // non-negative column count
+    const int height; // non-negative row count
     const bmpHeader head;      // .BMP file format header
     pixel* data;               // contiguous set of pixels
 

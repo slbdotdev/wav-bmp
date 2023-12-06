@@ -19,8 +19,8 @@ public:
         outputFilepath("defaultOutput.bmp"),
         outputWidth(333),
         outputHeight(80),
-        backgroundColor(pixel(10, 10, 175)), // light blue
-        foregroundColor(pixel(10, 10, 75)) {} // dark blue
+        backgroundColor(pixel(10, 10, 50)), // dark blue
+        foregroundColor(pixel(100, 100, 250)) {} // light blue
 
     // Ask the user to input custom settings at the terminal
     void promptUser();

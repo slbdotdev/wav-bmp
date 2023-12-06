@@ -49,8 +49,7 @@ void bmpHeader::write(std::ofstream& bmpFile) const {
 
 // Returns total size of BMP file given a specified width and height.
 // Calculates padding. Each row must be a multiple of 4 bytes.
-unsigned int bmpHeader::calculateSize(const unsigned int width,
-    const unsigned int height) {
+unsigned int bmpHeader::calculateSize(const int width, const int height) {
     unsigned int bytesInRow = width * bytesPerPixel;
     while (bytesInRow % 4 > 0) bytesInRow++;
     unsigned int bytesInBody = bytesInRow * height;
