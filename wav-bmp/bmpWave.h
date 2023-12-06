@@ -9,19 +9,28 @@
 #include <stdexcept>
 
 #include "bmp.h"
+#include "waveformSettings.h"
 
 // A bmpWave "is a" bmp image.
 // Adds functionality for addressing the image column-by-column.
+// Adds information from waveformSettings.
 class bmpWave : public bmp {
 public:
-    // Use base class custom constructor
-    bmpWave(int w, int h) : bmp(w, h) {};
+    // Uses base class custom constructor
+    bmpWave(waveformSettings sets);
 
-    // Fill entire image with a solid color
+    // Fills the first n columns based on the fill values in the array
+    void fillColumns(double fillVals[], int n);
+
+private:
+    // Helper function to fill entire image with a solid color
     void fillBackground(pixel color);
 
-    // Fill columns with waves
-    void paintColumn(int colIndex, double fillPercent, pixel color);
+    // Helper function to fill one column with the foreground color
+    void paintColumn(int colIndex, double fillPercent);
+
+    // Store settings from initialization
+    waveformSettings settings;
 };
 
 #endif

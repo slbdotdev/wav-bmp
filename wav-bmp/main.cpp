@@ -23,10 +23,13 @@ int main() {
     wav sound(1000);
     cout << "sound has " << sound.getLength() << " samples." << endl;
 
-    // generate bmp image
-    bmpWave image(sets.outputWidth, sets.outputHeight);
-    image.fillBackground(sets.backgroundColor);
-    image.paintColumn(0, 0.975, sets.foregroundColor);
+    // initialize bmp image from settings
+    bmpWave image(sets);
+
+    // draw wave
+    const int length = 5;
+    double fillVales[length] = { 0.2, 0.3, 0.4, 0.5, 0.6 };
+    image.fillColumns(fillVales, length);
 
     // open output file as raw binary to avoid carriage return issues
     ofstream outFile(sets.outputFilepath, ios::binary);

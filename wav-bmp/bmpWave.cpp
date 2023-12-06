@@ -5,6 +5,26 @@
 
 #include "bmpWave.h"
 
+// Custom constructor fills image with background color from settings
+bmpWave::bmpWave(waveformSettings sets)
+    : bmp(sets.outputWidth, sets.outputHeight), settings(sets) {
+    fillBackground(settings.backgroundColor);
+}
+
+
+// Paint a wave
+void bmpWave::fillColumns(double fillVals[], int n) {
+    // bounds checking
+    if (n <= 0) return;
+    if (n > settings.outputWidth) n = settings.outputWidth;
+
+    // use values in array to fill columns in image
+    for (int colIndex = 0; colIndex < n; colIndex++) {
+        paintColumn(colIndex, fillVals[colIndex]);
+    }
+}
+
+
 // Paint everything
 void bmpWave::fillBackground(pixel color) {
     // set every pixel in image
@@ -15,7 +35,7 @@ void bmpWave::fillBackground(pixel color) {
 
 
 // Paint just one column, centered vertically
-void bmpWave::paintColumn(int colIndex, double fillPercent, pixel color) {
+void bmpWave::paintColumn(int colIndex, double fillPercent) {
     // Bounds checking
     if (colIndex < 0) colIndex = 0;
     if (colIndex >= width) colIndex = width - 1;
@@ -30,6 +50,6 @@ void bmpWave::paintColumn(int colIndex, double fillPercent, pixel color) {
 
     // Fill pixels in the column based on bounds
     for (int rowIndex = lowerBound; rowIndex < upperBound; rowIndex++) {
-        data[colIndex + (rowIndex * width)] = color;
+        data[colIndex + (rowIndex * width)] = settings.foregroundColor;
     }
 }
