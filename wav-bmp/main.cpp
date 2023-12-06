@@ -3,7 +3,7 @@
 // 2023-11-03
 // Stephen Lee Belden
 
-#include "bmp.h"
+#include "bmpWave.h"
 #include "tests.h"
 #include "wav.h"
 #include "waveformSettings.h"
@@ -24,7 +24,8 @@ int main() {
     cout << "sound has " << sound.getLength() << " samples." << endl;
 
     // generate bmp image
-    bmp image(sets.outputWidth, sets.outputHeight);
+    bmpWave image(sets.outputWidth, sets.outputHeight);
+    image.paintColumn(20, 0.5, pixel(100, 100, 100));
 
     // open output file
     ofstream outFile(sets.outputFilepath);

@@ -15,7 +15,8 @@
 // Class for storing and writing a .bmp image file
 class bmp {
 public:
-    // Constructor with size only, for testing, all pixels black
+    // Constructor requires fixed height and width,
+    // initializes pixels to black
     bmp(unsigned int w, unsigned int h)
         : width(w), height(h),
         data(new pixel[w * h]),
@@ -42,10 +43,7 @@ public:
     // Destructor for deleting dynamic memory
     ~bmp();
 
-private:
-    // Private helper functions
-    void writeRow(int rowIndex, std::ofstream& bmpFile) const;
-    
+protected:
     // It is important for the width and height of the image to be
     // constant, because these values are used to initialize the size
     // of the data array, to determine row boundaries, for array bounds
@@ -54,6 +52,10 @@ private:
     const unsigned int height; // non-negative row count
     const bmpHeader head;      // .BMP file format header
     pixel* data;               // contiguous set of pixels
+
+private:
+    // Private helper functions
+    void writeRow(int rowIndex, std::ofstream& bmpFile) const;
 };
 
 #endif bmp_h
