@@ -24,7 +24,6 @@ int main() {
     cout << "sound has " << sound.getLength() << " samples." << endl;
 
     // initialize bmp image from settings
-
     bmpWave image(sets);
 
     // draw wave

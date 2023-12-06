@@ -170,7 +170,7 @@ void waveformSettings::doOption(char opt) {
 // Default values for demo
 void waveformSettings::loadDefaults() {
     inputFilepath = "meow.wav";
-    outputFilepath = "defaultOutput.bmp";
+    outputFilepath = "out.bmp";
     outputWidth = 333;
     outputHeight = 80;
     backgroundColor = pixel(10, 10, 50); // dark blue
