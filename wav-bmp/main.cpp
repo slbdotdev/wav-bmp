@@ -26,7 +26,7 @@ int main() {
     // generate bmp image
     bmpWave image(sets.outputWidth, sets.outputHeight);
     image.fillBackground(sets.backgroundColor);
-    image.paintColumn(0, 0.95, sets.foregroundColor);
+    image.paintColumn(0, 0.975, sets.foregroundColor);
 
     // open output file as raw binary to avoid carriage return issues
     ofstream outFile(sets.outputFilepath, ios::binary);

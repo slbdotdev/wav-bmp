@@ -22,20 +22,14 @@ void bmpWave::paintColumn(int colIndex, double fillPercent, pixel color) {
     if (fillPercent < 0.0) fillPercent = 0.0;
     if (fillPercent > 1.0) fillPercent = 1.0;
 
-    // Fill (or don't fill) each pixel in the column
-    for (int rowIndex = 0; rowIndex < height; rowIndex++) {
-        // split fill height above and below middle of image
-        int middle = height / 2;
-        double halfFill = fillPercent / 2;
-        int upperBound
-            = static_cast<int>(ceil(middle + (height * halfFill)));
-        int lowerBound
-            = static_cast<int>(floor(middle - (height * halfFill)));
+    // split fill height above and below middle of image
+    int middle = height / 2;
+    double halfFillHeight = height * (fillPercent / 2);
+    int upperBound = static_cast<int>(ceil(middle + halfFillHeight));
+    int lowerBound = static_cast<int>(floor(middle - halfFillHeight));
 
-        // use bounds to determine if this pixel gets painted
-        if (rowIndex >= lowerBound && rowIndex < upperBound) {
-            int pixelIndex = colIndex + (rowIndex * width);
-            data[pixelIndex] = color;
-        }
+    // Fill pixels in the column based on bounds
+    for (int rowIndex = lowerBound; rowIndex < upperBound; rowIndex++) {
+        data[colIndex + (rowIndex * width)] = color;
     }
 }
