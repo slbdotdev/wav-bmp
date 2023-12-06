@@ -39,6 +39,9 @@
     <ClCompile Include="bmpWave.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="except.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="wav.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bmpWave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="except.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,14 +16,15 @@ int main() {
     // code testing
     tests::runAll();
 
-    // get settings
-    waveformSettings sets;
+    // get settings from user
+    waveformSettings sets(cin, cout);
 
     // read wav audio
     wav sound(1000);
     cout << "sound has " << sound.getLength() << " samples." << endl;
 
     // initialize bmp image from settings
+
     bmpWave image(sets);
 
     // draw wave

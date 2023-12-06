@@ -130,6 +130,7 @@
     <ClCompile Include="bmp.cpp" />
     <ClCompile Include="bmpHeader.cpp" />
     <ClCompile Include="bmpWave.cpp" />
+    <ClCompile Include="except.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pixel.cpp" />
     <ClCompile Include="tests.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="bmp.h" />
     <ClInclude Include="bmpHeader.h" />
     <ClInclude Include="bmpWave.h" />
+    <ClInclude Include="except.h" />
     <ClInclude Include="pixel.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="wav.h" />
