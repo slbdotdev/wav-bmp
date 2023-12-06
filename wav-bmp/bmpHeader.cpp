@@ -11,37 +11,39 @@ void bmpHeader::write(std::ofstream& bmpFile) const {
     bmpFile << 'B' << 'M';
 
     // Remaining writes can not use operator << because it does not
-    // respect the size of the variable.
+    // respect the size of variables.
 
     // Size of whole file
-    bmpFile.write((char*)&totalFileSize, sizeof(unsigned int));
+    bmpFile.write((char*)&totalFileSize, sizeof(totalFileSize));
 
     // Data offset information
-    bmpFile.write((char*)&reservedBytes, sizeof(unsigned int));
-    bmpFile.write((char*)&bytesInHeader, sizeof(unsigned int));
+    bmpFile.write((char*)&reservedBytes, sizeof(reservedBytes));
+    bmpFile.write((char*)&bytesInHeader, sizeof(bytesInHeader));
 
     // Info header section
-    bmpFile.write((char*)&sizeOfInfoHeader, sizeof(unsigned int));
+    bmpFile.write((char*)&sizeOfInfoHeader, sizeof(sizeOfInfoHeader));
 
     // Image dimensions
-    bmpFile.write((char*)&width, sizeof(int));
-    bmpFile.write((char*)&height, sizeof(int));
+    bmpFile.write((char*)&width, sizeof(width));
+    bmpFile.write((char*)&height, sizeof(height));
 
     // Color settings
-    bmpFile.write((char*)&numberOfColorPlanes, sizeof(unsigned short));
-    bmpFile.write((char*)&colorDepth, sizeof(unsigned short));
+    bmpFile.write((char*)&numberOfColorPlanes, sizeof(numberOfColorPlanes));
+    bmpFile.write((char*)&colorDepth, sizeof(colorDepth));
 
     // Image data settings
-    bmpFile.write((char*)&compressionMethod, sizeof(unsigned int));
-    bmpFile.write((char*)&rawBitmapDataSize, sizeof(unsigned int));
+    bmpFile.write((char*)&compressionMethod, sizeof(compressionMethod));
+    bmpFile.write((char*)&rawBitmapDataSize, sizeof(rawBitmapDataSize));
 
     // Real-world size (for printing)
-    bmpFile.write((char*)&horizontalPrintResolution, sizeof(int));
-    bmpFile.write((char*)&verticalPrintResolution, sizeof(int));
+    bmpFile.write((char*)&horizontalPrintResolution,
+        sizeof(horizontalPrintResolution));
+    bmpFile.write((char*)&verticalPrintResolution,
+        sizeof(verticalPrintResolution));
 
     // Color palate lookup table information (unused)
-    bmpFile.write((char*)&colorTableEntries, sizeof(unsigned int));
-    bmpFile.write((char*)&importantColors, sizeof(unsigned int));
+    bmpFile.write((char*)&colorTableEntries, sizeof(colorTableEntries));
+    bmpFile.write((char*)&importantColors, sizeof(importantColors));
 }
 
 
@@ -49,8 +51,8 @@ void bmpHeader::write(std::ofstream& bmpFile) const {
 // Calculates padding. Each row must be a multiple of 4 bytes.
 unsigned int bmpHeader::calculateSize(const unsigned int width,
     const unsigned int height) {
-    uint32_t bytesInRow = width * bytesPerPixel;
+    unsigned int bytesInRow = width * bytesPerPixel;
     while (bytesInRow % 4 > 0) bytesInRow++;
-    uint32_t bytesInBody = bytesInRow * height;
+    unsigned int bytesInBody = bytesInRow * height;
     return bytesInHeader + bytesInBody;
 }

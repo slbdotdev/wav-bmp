@@ -25,6 +25,8 @@ const unsigned int bmp::getPixelCount() {
     return width * height;
 }
 
+
+// Write
 void bmp::writeToFile(std::ofstream& outFile) {
     // write header first
     head.write(outFile);
