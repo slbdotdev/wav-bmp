@@ -173,8 +173,8 @@ void waveformSettings::loadDefaults() {
     outputFile = "out.bmp";
     outputWidth = 800;
     outputHeight = 120;
-    backgroundColor = pixel(10, 10, 50); // dark blue
-    foregroundColor = pixel(100, 100, 250); // light blue
+    backgroundColor = pixel(10, 10, 40); // dark blue
+    foregroundColor = pixel(120, 120, 250); // light blue
 }
 
 // Get all custom settings
