@@ -33,8 +33,8 @@ public:
     void setHeight();
 
     // All data members are public for access like a c-struct
-    std::string inputFilepath;
-    std::string outputFilepath;
+    std::string inputFile;
+    std::string outputFile;
     int outputWidth;
     int outputHeight;
     pixel backgroundColor;

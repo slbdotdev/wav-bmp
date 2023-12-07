@@ -21,7 +21,7 @@ int main() {
     waveformSettings sets(cin, cout);
 
     // open and load wav file
-    ifstream inFile(sets.inputFilepath);
+    ifstream inFile(sets.inputFile, ios::binary);
     wav audio(inFile);
 
     // initialize bmp image from settings
@@ -50,18 +50,17 @@ int main() {
     image.fillColumns(avgFills, sets.outputWidth);
 
     // open output file as raw binary to avoid carriage return issues
-    ofstream outFile(sets.outputFilepath, ios::binary);
+    ofstream outFile(sets.outputFile, ios::binary);
 
     // write to disk
     image.writeToFile(outFile);
 
     // give feedback to user
-    cout << sets.inputFilepath << " has " << audio.getLength() << " samples."
-        << endl;
+    cout << sets.inputFile << " has " << audio.getLength() << " samples." << endl;
     cout << "Output resolution is " << sets.outputWidth << " columns." << endl;
     cout << "Resulting samples per column: " << trueSamplesPerCol << endl;
     cout << "Output folder is VS Solution directory," << endl;
-    cout << "Image written to: " << sets.outputFilepath << endl;
+    cout << "Image written to: " << sets.outputFile << endl;
 
     // cleanup
     outFile.close();

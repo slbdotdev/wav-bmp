@@ -47,7 +47,7 @@ void waveformSettings::setInput() {
         cout << "Enter a valid filename: ";
 
         // Read
-        cin >> inputFilepath;
+        cin >> inputFile;
 
         // Exception handling
         try {
@@ -72,7 +72,7 @@ void waveformSettings::setOutput() {
         cout << "Enter a valid filename: ";
 
         // Read
-        cin >> outputFilepath;
+        cin >> outputFile;
 
         // Exception handling
         try {
@@ -169,10 +169,10 @@ void waveformSettings::doOption(char opt) {
 
 // Default values for demo
 void waveformSettings::loadDefaults() {
-    inputFilepath = "meow.wav";
-    outputFilepath = "out.bmp";
-    outputWidth = 333;
-    outputHeight = 80;
+    inputFile = "meow.wav";
+    outputFile = "out.bmp";
+    outputWidth = 800;
+    outputHeight = 120;
     backgroundColor = pixel(10, 10, 50); // dark blue
     foregroundColor = pixel(100, 100, 250); // light blue
 }
@@ -188,7 +188,7 @@ void waveformSettings::customInput() {
 // Ensure the input file is readable or throw exception
 void waveformSettings::checkInputFile() {
     // Open, check, and close file
-    ifstream infile(inputFilepath);
+    ifstream infile(inputFile);
     bool good = infile.good();
     infile.close();
 
@@ -200,7 +200,7 @@ void waveformSettings::checkInputFile() {
 // Ensure the output file is readable or throw exception
 void waveformSettings::checkOutputFile() {
     // Open, check, and close file
-    ofstream outfile(outputFilepath);
+    ofstream outfile(outputFile);
     bool good = outfile.good();
     outfile.close();
 
