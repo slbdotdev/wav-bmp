@@ -22,7 +22,7 @@ wav::wav(std::ifstream& infile) {
 
     // Read samples
     data = new short[length] {};
-    for (long i = 0; i < length || !infile.eof(); i++) {
+    for (long i = 0; i < length && !infile.eof(); i++) {
         infile.read(reinterpret_cast<char*>(&data[i]), sizeof(short));
     }
 }
