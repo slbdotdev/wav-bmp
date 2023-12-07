@@ -8,6 +8,7 @@
 #include "wav.h"
 #include "waveformSettings.h"
 
+#include <fstream>
 #include <iostream>
 
 using namespace std;
@@ -19,17 +20,34 @@ int main() {
     // get settings from user
     waveformSettings sets(cin, cout);
 
-    // read wav audio
-    wav sound(1000);
-    cout << "sound has " << sound.getLength() << " samples." << endl;
+    // open and load wav file
+    ifstream inFile(sets.inputFilepath);
+    wav audio(inFile);
 
     // initialize bmp image from settings
     bmpWave image(sets);
+    
+    // do some quick math
+    double idealSamplesPerColumn
+        = static_cast<double>(audio.getLength()) / sets.outputWidth;
+    long trueSamplesPerCol
+        = static_cast<long>(ceil(idealSamplesPerColumn));
+
+    // generate binned averages
+    short* avgs = new short[sets.outputWidth];
+    for (long i = 0; i < sets.outputWidth; i++) {
+        long start = static_cast<long>(floor(i * idealSamplesPerColumn));
+        avgs[i] = audio.getAverage(start, trueSamplesPerCol);
+    }
+
+    // convert averages to percentages
+    double* avgFills = new double[sets.outputWidth];
+    for (int i = 0; i < sets.outputWidth; i++) {
+        avgFills[i] = static_cast<double>(avgs[i]) / SHRT_MAX;
+    }
 
     // draw wave
-    const int length = 5;
-    double fillVales[length] = { 0.2, 0.3, 0.4, 0.5, 0.6 };
-    image.fillColumns(fillVales, length);
+    image.fillColumns(avgFills, sets.outputWidth);
 
     // open output file as raw binary to avoid carriage return issues
     ofstream outFile(sets.outputFilepath, ios::binary);
@@ -37,6 +55,16 @@ int main() {
     // write to disk
     image.writeToFile(outFile);
 
-    // close file
+    // give feedback to user
+    cout << sets.inputFilepath << " has " << audio.getLength() << " samples."
+        << endl;
+    cout << "Output resolution is " << sets.outputWidth << " columns." << endl;
+    cout << "Resulting samples per column: " << trueSamplesPerCol << endl;
+    cout << "Output folder is VS Solution directory," << endl;
+    cout << "Image written to: " << sets.outputFilepath << endl;
+
+    // cleanup
     outFile.close();
+    delete[] avgs;
+    delete[] avgFills;
 }

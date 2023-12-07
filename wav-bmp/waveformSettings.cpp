@@ -177,7 +177,7 @@ void waveformSettings::loadDefaults() {
     foregroundColor = pixel(100, 100, 250); // light blue
 }
 
-// Get all six custom settings
+// Get all custom settings
 void waveformSettings::customInput() {
     setInput();
     setOutput();

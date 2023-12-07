@@ -24,11 +24,12 @@ public:
     wav(const wav& copy);
 
     // getters
-    const int getLength();
+    const long getLength();
+    short getAverage(long startIndex, long count);
 
     // operator overloads
-    const int16_t& operator[](int index);
-    const int16_t& operator[](int index) const;
+    const short& operator[](int index);
+    const short& operator[](int index) const;
 
     // assignment is typically overloaded for classes with pointers,
     // but in this case the class is designed to be immutable,
@@ -39,8 +40,8 @@ public:
     ~wav();
 
 private:
-    int16_t* data;
-    int length;
+    short* data;
+    long length;
 };
 
 #endif
