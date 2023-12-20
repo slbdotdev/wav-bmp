@@ -14,36 +14,46 @@ void bmpHeader::write(std::ofstream& bmpFile) const {
     // respect the size of variables.
 
     // Size of whole file
-    bmpFile.write((char*)&totalFileSize, sizeof(totalFileSize));
+    bmpFile.write(reinterpret_cast<const char*>(&totalFileSize),
+        sizeof(totalFileSize));
 
     // Data offset information
-    bmpFile.write((char*)&reservedBytes, sizeof(reservedBytes));
-    bmpFile.write((char*)&bytesInHeader, sizeof(bytesInHeader));
+    bmpFile.write(reinterpret_cast<const char*>(&reservedBytes),
+        sizeof(reservedBytes));
+    bmpFile.write(reinterpret_cast<const char*>(&bytesInHeader),
+        sizeof(bytesInHeader));
 
     // Info header section
-    bmpFile.write((char*)&sizeOfInfoHeader, sizeof(sizeOfInfoHeader));
+    bmpFile.write(reinterpret_cast<const char*>(&sizeOfInfoHeader),
+        sizeof(sizeOfInfoHeader));
 
     // Image dimensions
-    bmpFile.write((char*)&width, sizeof(width));
-    bmpFile.write((char*)&height, sizeof(height));
+    bmpFile.write(reinterpret_cast<const char*>(&width), sizeof(width));
+    bmpFile.write(reinterpret_cast<const char*>(&height), sizeof(height));
 
     // Color settings
-    bmpFile.write((char*)&numberOfColorPlanes, sizeof(numberOfColorPlanes));
-    bmpFile.write((char*)&colorDepth, sizeof(colorDepth));
+    bmpFile.write(reinterpret_cast<const char*>(&numberOfColorPlanes),
+        sizeof(numberOfColorPlanes));
+    bmpFile.write(reinterpret_cast<const char*>(&colorDepth),
+        sizeof(colorDepth));
 
     // Image data settings
-    bmpFile.write((char*)&compressionMethod, sizeof(compressionMethod));
-    bmpFile.write((char*)&rawBitmapDataSize, sizeof(rawBitmapDataSize));
+    bmpFile.write(reinterpret_cast<const char*>(&compressionMethod),
+        sizeof(compressionMethod));
+    bmpFile.write(reinterpret_cast<const char*>(&rawBitmapDataSize),
+        sizeof(rawBitmapDataSize));
 
     // Real-world size (for printing)
-    bmpFile.write((char*)&horizontalPrintResolution,
+    bmpFile.write(reinterpret_cast<const char*>(&horizontalPrintResolution),
         sizeof(horizontalPrintResolution));
-    bmpFile.write((char*)&verticalPrintResolution,
+    bmpFile.write(reinterpret_cast<const char*>(&verticalPrintResolution),
         sizeof(verticalPrintResolution));
 
     // Color palate lookup table information (unused)
-    bmpFile.write((char*)&colorTableEntries, sizeof(colorTableEntries));
-    bmpFile.write((char*)&importantColors, sizeof(importantColors));
+    bmpFile.write(reinterpret_cast<const char*>(&colorTableEntries),
+        sizeof(colorTableEntries));
+    bmpFile.write(reinterpret_cast<const char*>(&importantColors),
+        sizeof(importantColors));
 }
 
 
